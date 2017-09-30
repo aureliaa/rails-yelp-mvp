@@ -1,6 +1,6 @@
 <div class='container restaurant'>
   <% @restaurants.each_with_index do |restaurant, index| %>
-    <h3><%= "#{index + 1}. #{restaurant.name}" %></h3>
+     <%= link_to "#{index + 1}. #{restaurant.name}", restaurant_path(restaurant) %>
     <p><%= restaurant.address %></p>
     <p><%= "Tel: #{restaurant.phone_number}" %></p>
     <p><%= restaurant.category %></p>
@@ -10,10 +10,6 @@
       <% arr << review.rating %>
       <% end %>
       <p>Rating: <%= average = arr.inject { |sum, elem| sum + elem}.to_f / arr.size %></p>
-      <% restaurant.reviews.each do |review| %>
-        <%= "#{review.rating}/5 - #{review.content}" %>
-        <br>
-      <% end %>
   <% end %>
   <br>
   <%= link_to "Add a restaurant", new_restaurant_path, class: "btn btn-primary"%>
